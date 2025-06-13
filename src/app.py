@@ -28,7 +28,7 @@ with app.app_context():
 @app.route("/verb", methods=["GET"])
 def http_get_verbs():
     db = get_db()
-    return {"verbs": get_verb_names(db)}
+    return get_verb_names(db)
 
 
 @app.route("/verb/<verb>", methods=["GET"])
