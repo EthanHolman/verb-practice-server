@@ -44,6 +44,12 @@ def http_get_verb(verb):
 def http_post_verb(verb):
     req = request.json
 
+    # all verbs should be lowercase
+    verb = verb.strip().lower()
+
+    if len(verb) == 0:
+        return jsonify("verb cannot be empty"), 400
+
     if "conjugations" not in req:
         return jsonify("missing conjugations in request body"), 400
 
@@ -53,4 +59,4 @@ def http_post_verb(verb):
         infinitive=verb,
         conjugations=req.get("conjugations"),
     )
-    return "Verb added", 201
+    return "Success", 204
